@@ -1,0 +1,331 @@
+/* ------------------------------
+   Global Styles
+------------------------------ */
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+/* ------------------------------
+   Navbar
+------------------------------ */
+.navbar {
+    background: rgba(0, 0, 0, 0.35);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    align-items: center;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    color: #ffeb3b;
+}
+
+.navbar button {
+    background: #ff5252;
+    border: none;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.navbar button:hover {
+    background: #e04848;
+}
+
+/* ------------------------------
+   Dashboard Layout
+------------------------------ */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.dashboard-container {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.dashboard-section {
+    flex: 1 1 48%;
+    background: rgba(0,0,0,0.25);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.dashboard-section h2 {
+    margin-top: 0;
+}
+
+/* ------------------------------
+   File Cards
+------------------------------ */
+.files-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.file-card {
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 12px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+}
+
+.file-card:hover {
+    transform: translateY(-2px);
+}
+
+.versions-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 10px 0;
+}
+
+.versions-list li {
+    margin-bottom: 5px;
+}
+
+/* ------------------------------
+   File Actions Buttons
+------------------------------ */
+.file-actions {
+    display: flex;       /* align buttons horizontally */
+    flex-wrap: wrap;     /* wrap if many buttons */
+    gap: 5px;            /* spacing between buttons */
+    align-items: center; /* vertically center buttons */
+    position: relative;  /* make clickable above other elements */
+    z-index: 1;
+}
+
+.button {
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    cursor: pointer;     /* show clickable cursor */
+    position: relative;
+    z-index: 10;         /* ensure button is above other elements */
+    color: #fff;
+}
+
+/* Specific button colors */
+.button.download {
+    background: #29b6f6;
+}
+
+.button.download:hover {
+    background: #1e88e5;
+}
+
+.button.delete-version {
+    background: #f44336;  /* red delete */
+    color: white;
+}
+
+.button.delete-version:hover {
+    background: #d32f2f;
+}
+
+.button.share {
+    background: #66bb6a;
+}
+
+.button.share:hover {
+    background: #43a047;
+}
+
+.button.approve-btn {
+    background: #4caf50;
+}
+
+.button.approve-btn:hover {
+    background: #43a047;
+}
+
+.button.deny-btn {
+    background: #f44336;
+}
+
+.button.deny-btn:hover {
+    background: #d32f2f;
+}
+
+.upload-button {
+    background: #ff9800;
+    padding: 8px 15px;
+}
+
+.upload-button:hover {
+    background: #fb8c00;
+}
+
+.shared-info {
+    font-size: 0.85em;
+    color: #ffeb3b;
+    margin-top: 8px;
+}
+
+/* ------------------------------
+   Auth Forms (Login / Register)
+------------------------------ */
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    background: rgba(0,0,0,0.35);
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.auth-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.auth-form label {
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+.auth-form input,
+.auth-form select {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+}
+
+.auth-form input:focus {
+    border: 2px solid #ffeb3b;
+}
+
+.button.login-button {
+    background: #4caf50;
+}
+
+.button.login-button:hover {
+    background: #43a047;
+}
+
+.button.register-button {
+    background: #ff9800;
+}
+
+.button.register-button:hover {
+    background: #fb8c00;
+}
+
+.error {
+    color: #ff5252;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.success {
+    color: #4caf50;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.auth-container p {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.auth-container a {
+    color: #ffeb3b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-container a:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------
+   Upload / Share Forms
+------------------------------ */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 500px;
+    margin: 20px 0;
+}
+
+form input[type="file"],
+form select {
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1em;
+}
+
+form button {
+    width: fit-content;
+    padding: 8px 15px;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    background: #2196f3;
+    color: #fff;
+}
+
+form button:hover {
+    background: #1976d2;
+}
+
+/* ------------------------------
+   Responsive tweaks
+------------------------------ */
+@media (max-width: 900px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .dashboard-section {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .container,
+    .auth-container {
+        margin: 20px;
+        padding: 20px;
+    }
+}

@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Welcome, {{ username }}!</h1>
+
+<div class="dashboard-container">
+
+{% if current_user_role() == "admin" %}
+
+    <!-- ADMIN SECTION 0: Pending User Approvals -->
+    <div class="dashboard-section">
+        <h2>Pending User Approvals</h2>
+
+        {% if pending_users %}
+        <div class="files-grid">
+            {% for u in pending_users %}
+            <div class="file-card" id="pending-{{ u.id }}">
+                <strong>{{ u.username }}</strong>
+                <p>{{ u.email }}</p>
+
+                {% if u.status == "approved" %}
+                    <p class="shared-info" style="color:green; font-weight:bold;">Approved ✅</p>
+                {% elif u.status == "denied" %}
+                    <p class="shared-info" style="color:red; font-weight:bold;">Denied ❌</p>
+                {% else %}
+                    <div style="margin-top:10px;">
+                        <a href="{{ url_for('approve_user', user_id=u.id) }}" 
+                           class="button approve-btn" 
+                           data-userid="{{ u.id }}">Approve</a>
+                        <a href="{{ url_for('deny_user', user_id=u.id) }}" 
+                           class="button deny-btn" 
+                           data-userid="{{ u.id }}"
+                           onclick="return confirm('Are you sure you want to deny this user?');">
+                           Deny
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No pending users.</p>
+        {% endif %}
+    </div>
+
+    <!-- ADMIN SECTION 1: Admin's own files -->
+    <div class="dashboard-section">
+        <h2>Uploaded by Admin</h2>
+        {% if my_files %}
+        <div class="files-grid">
+            {% for file in my_files %}
+            <div class="file-card">
+                <div class="file-header" style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong>{{ file }}</strong>
+                </div>
+                <ul class="versions-list">
+                    {% set file_versions = versions[file] %}
+                    {% for v in file_versions %}
+                    <li style="margin-top:5px;">
+                        <span>Version {{ v.version }}</span>
+                        <a href="{{ url_for('download', filename=file) }}" class="button download">Download</a>
+                        <button class="button delete-version" data-filename="{{ file }}" data-version="{{ v.version }}">Delete Version</button>
+                        <a href="{{ url_for('share_file', filename=file) }}" class="button share">Share</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No files uploaded by admin.</p>
+        {% endif %}
+    </div>
+
+    <!-- ADMIN SECTION 2: Files uploaded by users -->
+    <div class="dashboard-section">
+        <h2>Uploaded by Users</h2>
+        <div class="files-grid">
+            {% for file, file_versions in versions.items() %}
+                {% set uploader = get_user_by_id(file_versions[0]["uploaded_by"]) %}
+                {% if uploader and uploader["role"] != "admin" %}
+                <div class="file-card">
+                    <div class="file-header" style="display:flex; justify-content:space-between; align-items:center;">
+                        <strong>{{ file }}</strong>
+                    </div>
+                    <ul class="versions-list">
+                        {% for v in file_versions %}
+                        <li style="margin-top:5px;">
+                            <span>Version {{ v.version }}</span>
+                            <a href="{{ url_for('download', filename=file) }}" class="button download">Download</a>
+                            <button class="button delete-version" data-filename="{{ file }}" data-version="{{ v.version }}">Delete Version</button>
+                            <a href="{{ url_for('share_file', filename=file) }}" class="button share">Share</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <p class="shared-info">Uploaded by: {{ uploader["username"] }}</p>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% elif current_user_role() == "user" %}
+
+    <!-- USER SECTION 1: Own files -->
+    <div class="dashboard-section">
+        <h2>Your Uploaded Files</h2>
+        {% if my_files %}
+        <div class="files-grid">
+            {% for file in my_files %}
+            <div class="file-card">
+                <div class="file-header" style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong>{{ file }}</strong>
+                </div>
+                <ul class="versions-list">
+                    {% set file_versions = versions[file] %}
+                    {% set can_delete = (shares[file]['owner'] == g.user_id) %}
+                    {% for v in file_versions %}
+                    <li style="margin-top:5px;">
+                        <span>Version {{ v.version }}</span>
+                        <a href="{{ url_for('download', filename=file) }}" class="button download">Download</a>
+                        {% if can_delete %}
+                        <button class="button delete-version" data-filename="{{ file }}" data-version="{{ v.version }}">Delete Version</button>
+                        {% endif %}
+                        <a href="{{ url_for('share_file', filename=file) }}" class="button share">Share</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No files uploaded yet.</p>
+        {% endif %}
+    </div>
+
+    <!-- USER SECTION 2: Shared with user -->
+    <div class="dashboard-section">
+        <h2>Shared With You</h2>
+        {% if shared_files %}
+        <div class="files-grid">
+            {% for file in shared_files %}
+            <div class="file-card">
+                <div class="file-header" style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong>{{ file }}</strong>
+                </div>
+                <ul class="versions-list">
+                    {% set file_versions = versions[file] %}
+                    {% for v in file_versions %}
+                    <li style="margin-top:5px;">
+                        <span>Version {{ v.version }}</span>
+                        <a href="{{ url_for('download', filename=file) }}" class="button download">Download</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% set uploader = get_user_by_id(file_versions[0]["uploaded_by"]) %}
+                <p class="shared-info">
+                    Shared by: {% if uploader["role"] == "admin" %}Admin{% else %}{{ uploader["username"] }}{% endif %}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No files shared with you.</p>
+        {% endif %}
+    </div>
+
+{% elif current_user_role() == "guest" %}
+
+    <!-- GUEST VIEW: Only shared files -->
+    <div class="dashboard-section">
+        <h2>Shared With You</h2>
+        {% if shared_files %}
+        <div class="files-grid">
+            {% for file in shared_files %}
+            <div class="file-card">
+                <div class="file-header" style="display:flex; justify-content:space-between; align-items:center;">
+                    <strong>{{ file }}</strong>
+                </div>
+                <ul class="versions-list">
+                    {% set file_versions = versions[file] %}
+                    {% for v in file_versions %}
+                    <li style="margin-top:5px;">
+                        <span>Version {{ v.version }}</span>
+                        <a href="{{ url_for('download', filename=file) }}" class="button download">Download</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% set uploader = get_user_by_id(file_versions[0]["uploaded_by"]) %}
+                <p class="shared-info">
+                    Shared by: {% if uploader["role"] == "admin" %}Admin{% else %}{{ uploader["username"] }}{% endif %}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No files shared with you.</p>
+        {% endif %}
+    </div>
+
+{% endif %}
+
+{% if current_user_role() in ['admin','user'] %}
+<p style="margin-top:20px;">
+    <a href="{{ url_for('upload') }}" class="button upload-button">Upload a new file</a>
+</p>
+{% endif %}
+
+</div>
+
+<!-- JS for approve/deny + delete version -->
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+<!-- Styles -->
+<style>
+.button.download { background-color: #29b6f6; color: white; }        /* blue */
+.button.delete-version { background-color: #f44336; color: white; cursor: pointer }  /* red delete */
+.button.share { background-color: #66bb6a; color: white; }            /* green */
+.button.approve-btn { background-color: #4caf50; color: white; }      /* approve green */
+.button.deny-btn { background-color: #f44336; color: white; }         /* deny red */
+.button { border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+.file-actions a, .file-actions button { margin-left: 5px; }
+.file-header { flex-wrap: wrap; }
+.versions-list { list-style-type: none; padding-left: 0; margin-top: 10px; }
+.versions-list li { display: flex; align-items: center; gap: 5px; margin-bottom: 5px; }
+</style>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container"> <!-- reuse the card style from login/register -->
+    <h1>Upload Document</h1>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+    {% if success %}
+        <p class="success">{{ success }}</p>
+    {% endif %}
+
+    {% if current_user_role() in ['admin', 'user'] %}
+        <form method="post" enctype="multipart/form-data" class="auth-form">
+            <label for="file">Select file:</label>
+            <input type="file" name="file" id="file">
+
+            <button type="submit" class="button upload-button">Upload</button>
+        </form>
+    {% else %}
+        <p>You do not have permission to upload files.</p>
+    {% endif %}
+
+    <p style="text-align:center; margin-top: 15px;">
+        <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    </p>
+</div>
+{% endblock %}

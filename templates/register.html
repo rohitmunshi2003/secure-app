@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <h1>Register</h1>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+    {% if success %}
+        <p class="success">{{ success }}</p>
+    {% endif %}
+
+    <form class="auth-form" method="post">
+        <label>Username:</label>
+        <input type="text" name="username" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" required>
+
+        <label>Password:</label>
+        <input type="password" name="password" required>
+
+        <label>Confirm Password:</label>
+        <input type="password" name="confirm" required>
+
+        <!-- NEW ROLE SELECTION -->
+        <label>Register As:</label>
+        <select name="role" required>
+            <option value="guest">Guest (View Only)</option>
+            <option value="user">User (Requires Admin Approval)</option>
+        </select>
+
+        <button type="submit" class="button register-button">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+</div>
+{% endblock %}

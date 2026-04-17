@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecureDocs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    {% if g.user_id %}
+    <nav class="navbar">
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('upload') }}">Upload</a>
+
+        {% if current_user_role() == 'admin' %}
+            <a href="{{ url_for('list_users') }}">Users</a>
+        {% endif %}
+
+        <form action="{{ url_for('logout') }}" method="post" style="display:inline;">
+            <button type="submit" class="button">Logout</button>
+        </form>
+    </nav>
+    {% endif %}
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

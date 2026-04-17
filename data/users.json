@@ -1,0 +1,201 @@
+{
+  "1772212421117": {
+    "username": "rohitmunshi2001",
+    "email": "rohitmunshi00@gmail.com",
+    "password_hash": "$2b$12$0V7uefTwPLpkqLGtF2yA/.NG0gDovaSZ.oUAr5LvHo.hR3cR3RMDq",
+    "created_at": 1772212421.1177318,
+    "role": "user",
+    "failed_attempts": 0,
+    "locked_until": null,
+    "approved": true
+  },
+  "1773330521859": {
+    "username": "Dolphinxyz",
+    "email": "dolphinxys@gmail.com",
+    "password_hash": "$2b$12$1b4m2dSQCASCIFmmvyXf.eAlcJFbJ6OnpWwR0fk5YindnkZ.SnGjy",
+    "created_at": 1773330521.8591666,
+    "role": "admin",
+    "failed_attempts": 0,
+    "locked_until": null,
+    "approved": true
+  },
+  "1773438665716": {
+    "username": "Peter33",
+    "email": "Peter33@gmail.com",
+    "password_hash": "$2b$12$uxB8WcMDkvEwERkAUrEHEOk4AwPuD0xJzpLBSbyM5pPnceI8H5Azi",
+    "created_at": 1773438665.7166305,
+    "role": "user",
+    "failed_attempts": 0,
+    "locked_until": null,
+    "approved": true
+  },
+  "1773718333028": {
+    "username": "JohnKelly33",
+    "email": "JohnKelly33@gmail.com",
+    "password_hash": "$2b$12$czKOAfJUpPJ3kyFs6BxWuuradReKkPl1zRMGtF0epbb41gJNDQ6VO",
+    "created_at": 1773718333.0283234,
+    "role": "user",
+    "approved": false,
+    "failed_attempts": 0,
+    "locked_until": null,
+    "denied": true
+  },
+  "1773718430133": {
+    "username": "exampleguest33",
+    "email": "exampleguest33@gmail.com",
+    "password_hash": "$2b$12$t/79ohgXcVaMBk0R3g0W0eTvP39aLhRW9BLWJb7hXUhf17we4Qgti",
+    "created_at": 1773718430.1338549,
+    "role": "guest",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null
+  },
+  "1773761009976": {
+    "username": "RajuPeter33",
+    "email": "rajupeter33@gmail.com",
+    "password_hash": "$2b$12$5/xFdCqrUPbIrg15wJ2JZ.gXQPPbOo260FPubrAUGTv8NOgsj.hta",
+    "created_at": 1773761009.9764013,
+    "role": "user",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null
+  },
+  "1773768517556": {
+    "username": "Seeyaa3",
+    "email": "seeyaa3@gmail.com",
+    "password_hash": "$2b$12$FlfndEkB.0UxAICT/fb6xe5JtTxtQY7001n02VDSP2VT3MUuHOUrK",
+    "created_at": 1773768517.556451,
+    "role": "user",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null
+  },
+  "1773771956738": {
+    "username": "KatheyR33",
+    "email": "KatheyR33@gmail.com",
+    "password_hash": "$2b$12$nDKVLFGfukGGRTTJ/G6zfu0TT./KjN7hnQQeklwF2uPQ1l7tJ0ETS",
+    "created_at": 1773771956.7389817,
+    "role": "user",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null
+  },
+  "1773776316808": {
+    "username": "abcdef33",
+    "email": "adcdef33@gmail.com",
+    "password_hash": "$2b$12$RadLk/gf7MghjzxQ1i7vMe1rA3KYzohfMbSD.xWIBrBupCeCJFKiG",
+    "created_at": 1773776316.8088048,
+    "role": "user",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null,
+    "denied": false
+  },
+  "1773781496859": {
+    "username": "Aliceak33",
+    "email": "aliceak33@gmail.com",
+    "password_hash": "$2b$12$VLSLpPq3J54uYF7gkaJ6Iu8fVk78tyuocDd2F1GJz3jlK51YgxrR.",
+    "created_at": 1773781496.859524,
+    "role": "user",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null,
+    "denied": false
+  },
+  "1773781550784": {
+    "username": "alicebob33",
+    "email": "alicebob33@gmail.com",
+    "password_hash": "$2b$12$JuyVo/6YhSfITCDFbXFb6uZgbocAE/yqmyh8.RsGqI7.gtDlKEEGi",
+    "created_at": 1773781550.78443,
+    "role": "guest",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null
+  },
+  "1773849796016": {
+    "username": "Daniellu33",
+    "email": "daniellu33@gmail.com",
+    "password_hash": "$2b$12$BeNz.XTOkrdmCzZ0XwvdFO.9sOrtp3H8oZFF69xzwomLs5GERtQ7.",
+    "created_at": 1773849796.0164876,
+    "role": "user",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null,
+    "denied": false
+  },
+  "1773852270698": {
+    "username": "test33",
+    "email": "test33@gmail.com",
+    "password_hash": "$2b$12$QZjvbJmgKzU1NhieFC3XBeCoFWjCXn5p1Viz0T1z/BP3x/li3cO66",
+    "created_at": 1773852270.6985781,
+    "role": "user",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null,
+    "denied": false
+  },
+  "b848eef1-4e4f-4370-9d79-8dfcede09a74": {
+    "username": "Testuser",
+    "email": "Testuser@gmail.com",
+    "password_hash": "$2b$12$5HHXAeJtBczT6GGWdf3/pejO5t8kF13Csj4gsk8qpLElLq4eI9wnK",
+    "created_at": 1773865012.2199557,
+    "role": "user",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null,
+    "denied": false
+  },
+  "06c758ac-0ac6-4b05-9b0c-1243eb8c157d": {
+    "username": "Dan33",
+    "email": "Dan33@gmail.com",
+    "password_hash": "$2b$12$7EcxKxXDvjq2X64Qv3Rkz.7dbI224au4cUP3qgdydU3ASHTxEIXx2",
+    "created_at": 1774303746.9711819,
+    "role": "user",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null,
+    "denied": false
+  },
+  "a191b042-ada9-4f0a-aa03-6a0d7ebec56b": {
+    "username": "rm1993",
+    "email": "rm1993@scarletmail.rutgers.edu",
+    "password_hash": "$2b$12$nHGnkbumUQo58ZCoykGLzeC.Gk6LW1oa7cgaz1LpbrE4ZI7PC24dW",
+    "created_at": 1774564989.564853,
+    "role": "user",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null,
+    "denied": false
+  },
+  "22cc2272-1d49-4f2d-9361-a17d2329b6a8": {
+    "username": "munshirohit2003",
+    "email": "munshirohit2003@gmail.com",
+    "password_hash": "$2b$12$H1D7eEAB7FRMAugTj6z3F.NOp.FVdUiknD2/lf4x1Ah05mFaFHX7q",
+    "created_at": 1774566870.305878,
+    "role": "guest",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null
+  },
+  "17b866d7-105c-4e05-bba9-43ee294b7b41": {
+    "username": "Daniel222",
+    "email": "lin.daniel222@gmail.com",
+    "password_hash": "$2b$12$Eme0gOwzxzt947NAY3ScmOiXuzM2JoLkpWnwvKkT/6lgTWLC4HlUy",
+    "created_at": 1774980949.2751641,
+    "role": "user",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null,
+    "denied": false
+  },
+  "bd664ed8-1d87-4b0b-b9da-56aca985fd97": {
+    "username": "DanielS",
+    "email": "dl1056@scarletmail.rutgers.edu",
+    "password_hash": "$2b$12$1oUW4UVBXfG2T.Gq7/z1y.P2S.Sv7FMvUUHCXzSy9xvsm8gUMrQ.q",
+    "created_at": 1774981139.6596925,
+    "role": "guest",
+    "approved": true,
+    "failed_attempts": 0,
+    "locked_until": null
+  }
+}

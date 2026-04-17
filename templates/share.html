@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <h1>Share Document: {{ filename }}</h1>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+    {% if success %}
+        <p class="success">{{ success }}</p>
+    {% endif %}
+
+    {% if users %}
+    <form method="post" class="auth-form">
+        <label>Share with:</label>
+        <select id="shareType" required>
+            <option value="">-- Select --</option>
+            <option value="user">User</option>
+            <option value="guest">Guest</option>
+        </select>
+
+        <br><br>
+
+        <label for="user_id">Select:</label>
+        <select name="user_id" id="user_id" required>
+            <option value="">-- Select type first --</option>
+        </select>
+
+        <button type="submit" class="button upload-button">Share</button>
+    </form>
+    {% else %}
+        <p>No other users available to share with.</p>
+    {% endif %}
+
+    {% if filename in shares and shares[filename]['shared_with'] %}
+        <p class="shared-info">Currently shared with:
+            {% for uid, ts in shares[filename]['shared_with'].items() %}
+                {{ get_user_by_id(uid)['username'] }}
+                {% if current_user_role() == 'admin' or g.user_id == shares[filename]['owner'] %}
+                    <button class="revoke-btn"
+                            data-userid="{{ uid }}"
+                            data-filename="{{ filename }}"
+                            data-username="{{ get_user_by_id(uid)['username'] }}">
+                        Revoke
+                    </button>
+                {% endif %}
+                {% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+    {% endif %}
+
+    <p style="margin-top: 15px;">
+        <a href="{{ url_for('dashboard') }}" class="button">Back to Dashboard</a>
+    </p>
+</div>
+
+<!-- Pass users data to external JS via data attribute -->
+<div id="share-data" data-users='{{ all_users | tojson | safe }}'></div>
+
+<!-- Include external JS -->
+<script src="{{ url_for('static', filename='js/share.js') }}"></script>
+{% endblock %}

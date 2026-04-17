@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <h1>User Management</h1>
+
+    <h2>Users</h2>
+    {% if users %}
+        <ul>
+            {% for u in users %}
+                <li>
+                    {{ u.username }} ({{ u.email }})
+                    <button class="delete-btn" data-userid="{{ u.id }}">Delete</button>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No users found.</p>
+    {% endif %}
+
+    <h2>Guests</h2>
+    {% if guests %}
+        <ul>
+            {% for g in guests %}
+                <li>
+                    {{ g.username }} ({{ g.email }})
+                    <button class="delete-btn" data-userid="{{ g.id }}">Delete</button>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No guests found.</p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('dashboard') }}" class="button">Back to Dashboard</a>
+</div>
+<!-- Include JS for delete functionality -->
+<script src="{{ url_for('static', filename='js/users.js') }}"></script>
+{%endblock %}

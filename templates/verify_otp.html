@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <h1>Enter OTP</h1>
+    <form method="POST" action="{{ url_for('verify_otp', user_id=user_id) }}">
+        <label for="otp">OTP (6-digit code)</label>
+        <input type="text" id="otp" name="otp" maxlength="6" required>
+
+        <button type="submit" class="login-button">Verify OTP</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+{% endblock %}
